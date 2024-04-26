@@ -14,7 +14,11 @@ void Vector::push_back(const std::string& item) {
     array[size++] = item;
 }
 
-void Vector::display() const { for (int i = 0; i < size; ++i) {std::cout << array[i] << std::endl;} }
+void Vector::display() const {
+    std::cout << "[ ";
+    for (int i = 0; i < size; ++i) { std::cout << array[i] << " , "; }
+    std::cout << " ]" << std::endl;
+}
 
 Vector::~Vector() {
     delete[] array;
