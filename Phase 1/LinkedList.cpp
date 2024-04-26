@@ -55,26 +55,65 @@ Vector LinkedList::start_with(const std::string& prefix) {
 
 
 
-Vector LinkedList::find(const std::string& substring)
-{
-	Vector matchingWords;
-	Node* current = head;
-	while (current) {
-		if (current->val.find(substring) != std::string::npos) {matchingWords.push_back(current->val);}
-		current = current->next;
-	}
-	return matchingWords;
+Vector LinkedList::end_with(const std::string& suffix) {
+    Vector matchingWords;
+    Node* current = head;
+
+    while (current) {
+        size_t suffixLength = 0;
+        while (suffix[suffixLength] != '\0') {
+            ++suffixLength;
+        }
+
+        size_t wordLength = 0;
+        while (current->val[wordLength] != '\0') {
+            ++wordLength;
+        }
+
+        if (wordLength >= suffixLength) {
+            bool endsWith = true;
+            for (size_t i = 0; i < suffixLength; ++i) {
+                if (current->val[wordLength - suffixLength + i] != suffix[i]) {
+                    endsWith = false;
+                    break;
+                }
+            }
+            if (endsWith) {
+                matchingWords.pushbackV3(current->val);
+            }
+        }
+        current = current->next;
+    }
+    return matchingWords;
 }
 
-Vector LinkedList::end_with(const std::string& suffix) {
-	Vector matchingWords;
-	Node* current = head;
-	while (current) {
-		if (current->val.length() >= suffix.length() &&
-			current->val.compare(current->val.length() - suffix.length(), suffix.length(), suffix) == 0) {
-			matchingWords.push_back(current->val);
-		}
-		current = current->next;
-	}
-	return matchingWords;
+Vector LinkedList::find(const std::string& substring) {
+    Vector matchingWords;
+    Node* current = head;
+
+    while (current) {
+        size_t substringLength = 0;
+        while (substring[substringLength] != '\0') {
+            ++substringLength;
+        }
+
+        size_t wordLength = 0;
+        while (current->val[wordLength] != '\0') { ++wordLength; }
+
+        for (size_t i = 0; i <= wordLength - substringLength; ++i) {
+            bool found = true;
+            for (size_t j = 0; j < substringLength; ++j) {
+                if (current->val[i + j] != substring[j]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                matchingWords.pushbackV3(current->val);
+               break; 
+            }
+        }
+        current = current->next;
+    }
+    return matchingWords;
 }
