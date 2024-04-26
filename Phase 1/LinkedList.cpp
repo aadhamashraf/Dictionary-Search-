@@ -32,11 +32,9 @@ bool LinkedList::search(const std::string& word)
 		temp = temp->next;
 	}
 	return false;
-
 }
 
 Vector LinkedList::start_with(const std::string& prefix) {
-
 	Vector matchingWords; 
 	Node* current = head; 
 
@@ -45,7 +43,7 @@ Vector LinkedList::start_with(const std::string& prefix) {
 		bool startsWithPrefix = true;
 
 		for (size_t i = 0; i < prefix.size(); ++i) {
-			if (i >= enterie.size() || enterie[i] != prefix[i]) {
+			if (enterie[i] != prefix[i] || i >= enterie.size()) {
 				startsWithPrefix = false;
 				break;
 			}
@@ -53,7 +51,6 @@ Vector LinkedList::start_with(const std::string& prefix) {
 		if (startsWithPrefix) { matchingWords.push_back(word); }
 		current = current->next; 
 	}
-
 	return matchingWords; 
 }
 
@@ -68,7 +65,6 @@ Vector LinkedList::find(const std::string& substring)
 	}
 	return matchingWords;
 }
-
 
 Vector LinkedList::end_with(const std::string& suffix) {
 	Vector matchingWords;
