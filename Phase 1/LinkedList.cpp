@@ -35,24 +35,24 @@ bool LinkedList::search(const std::string& word)
 }
 
 Vector LinkedList::start_with(const std::string& prefix) {
-	Vector matchingWords; 
-	Node* current = head; 
+    Vector matchingWords;
+    Node* current = head;
 
-	while (current != nullptr) {
-		const std::string& enterie = current->val;
-		bool startsWithPrefix = true;
+    while (current != nullptr) {
+	bool Flag = true;
+        for (size_t i = 0; prefix[i] != '\0'; ++i) {
+            if (current->val[i] == '\0' || current->val[i] != prefix[i]) {
+                Flag = false;
+                break;
+            }
+        }
+        if (Flag) { matchingWords.push_back(current->val);}
+        current = current->next;
+    }
 
-		for (size_t i = 0; i < prefix.size(); ++i) {
-			if (enterie[i] != prefix[i] || i >= enterie.size()) {
-				startsWithPrefix = false;
-				break;
-			}
-		}
-		if (startsWithPrefix) { matchingWords.push_back(word); }
-		current = current->next; 
-	}
-	return matchingWords; 
+    return matchingWords;
 }
+
 
 
 Vector LinkedList::find(const std::string& substring)
