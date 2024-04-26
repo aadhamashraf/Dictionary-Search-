@@ -35,7 +35,7 @@ bool LinkedList::search(const std::string& word)
 }
 
 Vector LinkedList::start_with(const std::string& prefix) {
-    Vector matchingWords;
+    Vector matchy;
     Node* current = head;
 
     while (current != nullptr) {
@@ -46,11 +46,11 @@ Vector LinkedList::start_with(const std::string& prefix) {
                 break;
             }
         }
-        if (Flag) { matchingWords.push_back(current->val);}
+        if (Flag) { matchy.push_back(current->val);}
         current = current->next;
     }
 
-    return matchingWords;
+    return matchy;
 }
 
 
