@@ -10,6 +10,7 @@ struct Node {
 	Node(std::string value) { val = value; }
 
 };
+
 class LinkedList
 {
 private:
