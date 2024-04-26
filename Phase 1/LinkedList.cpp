@@ -1,37 +1,37 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList(){ head = nullptr; }
+LinkedList::LinkedList() { head = nullptr; }
 
 void LinkedList::insert_at_end(std::string value)
 {
-	Node* newInserted = new Node(value);
-	if (head == nullptr) { head = newInserted; }
-	else 
-	{
-		Node* tempfetcher = head;
-		while (tempfetcher->next != nullptr) { tempfetcher = tempfetcher->next; }
-		tempfetcher->next = newInserted , newInserted->next = nullptr;
-	}
+    Node* newInserted = new Node(value);
+    if (head == nullptr) { head = newInserted; }
+    else
+    {
+        Node* tempfetcher = head;
+        while (tempfetcher->next != nullptr) { tempfetcher = tempfetcher->next; }
+        tempfetcher->next = newInserted, newInserted->next = nullptr;
+    }
 }
 
 void LinkedList::display()
 {
-	Node* temp = head;
-	while (temp != nullptr) {
-		if (temp->val != " ") { std::cout << temp->val << " -> "; }
-		temp = temp->next;
-	}
-	std::cout << "nullptr" << std::endl;
+    Node* temp = head;
+    while (temp != nullptr) {
+        if (temp->val != " ") { std::cout << temp->val << " -> "; }
+        temp = temp->next;
+    }
+    std::cout << "nullptr" << std::endl;
 }
 
 bool LinkedList::search(const std::string& word)
 {
-	Node* temp = head;
-	while (temp != nullptr) {
-		if (temp->val == word) {return true;}
-		temp = temp->next;
-	}
-	return false;
+    Node* temp = head;
+    while (temp != nullptr) {
+        if (temp->val == word) { return true; }
+        temp = temp->next;
+    }
+    return false;
 }
 
 Vector LinkedList::start_with(const std::string& prefix) {
@@ -39,14 +39,14 @@ Vector LinkedList::start_with(const std::string& prefix) {
     Node* current = head;
 
     while (current != nullptr) {
-	bool Flag = true;
+        bool Flag = true;
         for (size_t i = 0; prefix[i] != '\0'; ++i) {
             if (current->val[i] == '\0' || current->val[i] != prefix[i]) {
                 Flag = false;
                 break;
             }
         }
-        if (Flag) { matchy.push_back(current->val);}
+        if (Flag) { matchy.push_back(current->val); }
         current = current->next;
     }
 
@@ -79,7 +79,7 @@ Vector LinkedList::end_with(const std::string& suffix) {
                 }
             }
             if (endsWith) {
-                matchingWords.pushbackV3(current->val);
+                matchingWords.push_back(current->val);
             }
         }
         current = current->next;
@@ -109,8 +109,8 @@ Vector LinkedList::find(const std::string& substring) {
                 }
             }
             if (found) {
-                matchingWords.pushbackV3(current->val);
-               break; 
+                matchingWords.push_back(current->val);
+                break;
             }
         }
         current = current->next;
