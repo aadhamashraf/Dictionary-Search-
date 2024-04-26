@@ -31,7 +31,7 @@ int main() {
     std::cout << "Enter the word you want to search for here : ";
     std::cin >> word_to_search;
     
-    answer_search = (big_disaster.search(word_to_search)) ? "Founded elhamdulah " : "Not founded ";
+    answer_search = (big_disaster.search(word_to_search)) ? "Founded elhamdulah " : "Not founded Elhamdulah Bardu (Ruh Nam) ";
     std::cout << "Our Case Here Wll Be: " << answer_search <<std::endl ;
   
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -*/
