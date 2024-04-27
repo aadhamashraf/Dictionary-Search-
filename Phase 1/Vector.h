@@ -1,13 +1,12 @@
 #pragma once
-
 #include <iostream>
-#include <string>
+
 
 class Vector {
 private:
-    std::string* array;
-    int size;
-    int capacity;
+    std::string * array{nullptr};
+    int size{0};
+    int capacity{0};
 
 public:
     Vector();
