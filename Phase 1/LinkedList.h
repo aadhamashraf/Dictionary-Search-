@@ -3,12 +3,9 @@
 #include"Vector.h"
 
 struct Node {
-	
 	std::string val{ "" };
 	Node* next  { nullptr };
-
 	Node(std::string value) { val = value; }
-
 };
 
 class LinkedList
