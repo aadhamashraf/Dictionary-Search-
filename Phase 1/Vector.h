@@ -4,9 +4,9 @@
 
 class Vector {
 private:
-    std::string * array{nullptr};
-    int size{0};
-    int capacity{0};
+    std::string * array;
+    int size;
+    int capacity;
 
 public:
     Vector();
