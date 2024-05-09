@@ -1,75 +1,34 @@
+#ifndef TRIE_H
+#define TRIE_H
+
 #include <iostream>
 #include "Vector.h"
 
 struct TrieNode {
-    TrieNode * children[26];
+    TrieNode* children[26];
     bool isEndOfWord;
-    TrieNode() : isEndOfWord(false) { for(int i = 0; i < 26; i++) {children[i] = nullptr;}}
+    TrieNode() : isEndOfWord(false) {  for(int i = 0; i < 26; i++) { children[i] = nullptr; } }
 };
 
 class Trie {
 private:
+
     TrieNode* root;
+    void displayUtil(TrieNode* node, std::string str);
 
 public:
 
-  Trie() : root(new TrieNode()) {}
+    Trie();
 
-    void insert(std::string word) {
-        TrieNode* node = root;
-        for (char ch : word) {
-            int index = ch - 'a';
-            if (!node->children[index]) {
-                node->children[index] = new TrieNode();
-            }
-            node = node->children[index];
-        }
-        node->isEndOfWord = true;
-    }
+    void insert(std::string word);
 
-    void display(TrieNode* node, std::string str) {
-        if (node->isEndOfWord) {
-            std::cout << str << std::endl;
-        }
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            TrieNode* nextNode = node->children[ch - 'a'];
-            if (nextNode) {
-                display(nextNode, str + ch);
-            }
-        }
-    }
+    void display();
 
-    void display() {
-        display(root, "");
-    }
+    Vector fuzzySearch(std::string pattern);
 
-    // std::vector<std::string> fuzzySearch(std::string pattern) {
-    //     // Implement fuzzy search here
-    // }
+    Vector misspelledWordSearch(std::string word);
 
-    // std::vector<std::string> misspelledWordSearch(std::string word) {
-    //     // Implement misspelled word search here
-    // }
-
-    // std::vector<std::string> partialWordSearch(std::string suffix) {
-    //     // Implement partial word search here
-    // }
+    Vector partialWordSearch(std::string suffix);
 };
-int main() {
-    Trie trie;
-    trie.insert("apple");
-    trie.insert("apply");
-    trie.insert("apples");
-    trie.insert("loading");
-    trie.insert("interesting");
 
-    std::cout << "Displaying Trie:\n";
-    trie.display();
-
-    // Invoke other methods as needed
-    // std::vector<std::string> results = trie.fuzzySearch("appl?");
-    // results = trie.misspelledWordSearch("aple");
-    // results = trie.partialWordSearch("ing");
-
-    return 0;
-}
+#endif /* TRIE_H */
