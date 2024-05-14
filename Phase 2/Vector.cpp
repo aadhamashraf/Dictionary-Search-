@@ -16,7 +16,7 @@ void Vector::push_back(const std::string& item) {
 
 void Vector::display() const {
     std::cout << "[ ";
-    for (int i = 0; i < size; ++i) { std::cout << array[i] << " , "; }
+    for (int i = 0; i < size; ++i) { std::cout << array[i] << "  "; }
     std::cout << " ]" << std::endl;
 }
 
