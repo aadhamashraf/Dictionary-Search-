@@ -1,34 +1,33 @@
-#ifndef TRIE_H
-#define TRIE_H
+#ifndef PHASE_2_TRIE_H
+#define PHASE_2_TRIE_H
 
 #include <iostream>
-#include "Vector.h"
+#define ALPHABET_SIZE 26
 
 struct TrieNode {
-    TrieNode* children[26];
+
+    TrieNode *children[ALPHABET_SIZE];
     bool isEndOfWord;
-    TrieNode() : isEndOfWord(false) {  for(int i = 0; i < 26; i++) { children[i] = nullptr; } }
+
+    TrieNode() : isEndOfWord(false) {for (int i = 0; i < ALPHABET_SIZE; ++i) {children[i] = nullptr;}}
 };
 
 class Trie {
 private:
-
-    TrieNode* root;
-    void displayUtil(TrieNode* node, std::string str);
+    TrieNode *root;
 
 public:
-
     Trie();
 
-    void insert(std::string word);
+    void insert(const std::string &word);
 
-    void display();
+    bool search(const std::string &word);
 
-    Vector fuzzySearch(std::string pattern);
+    bool isEmpty(TrieNode *node);
 
-    Vector misspelledWordSearch(std::string word);
+    TrieNode* remove(TrieNode *node, const std::string &word, int depth = 0);
 
-    Vector partialWordSearch(std::string suffix);
+    void deleteWord(const std::string &word);
 };
 
-#endif /* TRIE_H */
+#endif //PHASE_2_TRIE_H
