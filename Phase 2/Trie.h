@@ -17,6 +17,7 @@ private:
     TrieNode *root;
 
 public:
+
     Trie();
 
     void insert(const std::string &word);
@@ -28,6 +29,18 @@ public:
     TrieNode* remove(TrieNode *node, const std::string &word, int depth = 0);
 
     void deleteWord(const std::string &word);
+
+
+    // Adham Section
+    Vector FuzzySearch (std::string & word );
+    Vector MisspelledWordSearch (std::string &word );
+    Vector PartialWordSearch (std::string &suffix );
+    
+    //Attareno Section 
+    /*
+        Declare Your Functions Here
+    */
 };
+
 
 #endif //PHASE_2_TRIE_H
