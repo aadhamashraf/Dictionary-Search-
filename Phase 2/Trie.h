@@ -1,22 +1,37 @@
-#ifndef PHASE_2_TRIE_H
-#define PHASE_2_TRIE_H
+#ifndef TRIE_H
+#define TRIE_H
 
 #include <iostream>
-#define ALPHABET_SIZE 26
+#include "Vector.h" 
 
 struct TrieNode {
-
-    TrieNode *children[ALPHABET_SIZE];
+    TrieNode *children[26];
     bool isEndOfWord;
 
-    TrieNode() : isEndOfWord(false) {for (int i = 0; i < ALPHABET_SIZE; ++i) {children[i] = nullptr;}}
+    TrieNode() : isEndOfWord(false) {
+        for (int i = 0; i < 26; ++i) {
+            children[i] = nullptr;
+        }
+    }
 };
 
 class Trie {
 private:
     TrieNode *root;
 
+    char tolower(char c); 
+
+    void searchWords(TrieNode* node, const std::string& prefix, Vector &result);
+
+    void wildcardSearchHelper(TrieNode* node, const std::string& pattern, std::string word, Vector& result);
+
+    void partialWordSearchHelper(TrieNode* node, const std::string& suffix, const std::string& current, Vector& result, int maxLength);
+
+    void misspelledWordSearchHelper(TrieNode* node, const std::string& word, const std::string& current, Vector& result);
+
 public:
+
+    int wordcoutner {0};
 
     Trie();
 
@@ -30,17 +45,19 @@ public:
 
     void deleteWord(const std::string &word);
 
+    void displayContent();
 
-    // Adham Section
-    Vector FuzzySearch (std::string & word );
-    Vector MisspelledWordSearch (std::string &word );
-    Vector PartialWordSearch (std::string &suffix );
-    
-    //Attareno Section 
-    /*
-        Declare Your Functions Here
-    */
+    Vector fuzzySearch(const std::string& prefix);
+
+    Vector wildcardSearch(const std::string& pattern);
+
+    Vector partialWordSearch(const std::string& suffix);
+
+    Vector misspelledWordSearch(const std::string& word);
+
+    void displayContentHelper(TrieNode *node, std::string prefix);
+
+    int get_trie_size();
 };
 
-
-#endif //PHASE_2_TRIE_H
+#endif // TRIE_H
