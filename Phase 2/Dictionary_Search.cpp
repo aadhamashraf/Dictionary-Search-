@@ -30,19 +30,19 @@ void Dictionary_Search::performSearch() {
     while (true) {
         int choice{-1};
         std::string searchTerm{""};
-
-        std::cout << "Menu : " << std::endl
-                  << std::endl
-                  << "1) Show The Trie Data Structure " << std::endl
-                  << "2) Single Word Search "<<std::endl
-                  << "3) Multiple Word Search "<<std::endl
-                  << "4) Partial Word Search(Prefix) "<<std::endl
-                  << "5) Fuzzy Search " << std::endl
-                  << "6) Misspelled Word Search " << std::endl
-                  << "7) Partial Word Search(Suffix) " << std::endl
-                  << "8) Wildcard Search "<<std::endl
-                  << "9) Exit The Program " << std::endl
-                  << "Enter Your Choice Here: ";
+        std::cout<<"------"<<std::endl
+                << "|Menu| " << std::endl
+                << "------"  << std::endl
+              << "1) Show The Trie Data Structure " << std::endl
+              << "2) Single Word Search "<<std::endl
+              << "3) Multiple Word Search "<<std::endl
+              << "4) Partial Word Search(Prefix) "<<std::endl
+              << "5) Fuzzy Search " << std::endl
+              << "6) Misspelled Word Search " << std::endl
+              << "7) Partial Word Search(Suffix) " << std::endl
+              << "8) Wildcard Search "<<std::endl
+              << "9) Exit The Program " << std::endl
+              << "Enter Your Choice Here: ";
         std::cin >> choice;
 
         auto start = std::chrono::high_resolution_clock::now();
@@ -52,11 +52,12 @@ void Dictionary_Search::performSearch() {
         switch (choice) {
             case 1: {
                 int choice_1{-1};
-                std::cout << "Trie Capabilities Menu: " << std::endl
+                std::cout<<"------------------------"<<std::endl
+                          <<"|Trie Capabilities Menu |" << std::endl
+                          <<"------------------------"<<std::endl
                           << "1.1) Display The Trie Data Structure " << std::endl
                           << "1.2) Add Single Element " << std::endl
-                          << "1.3) Search for element existence " << std::endl
-                          << "1.4) Delete element " << std::endl
+                          << "1.3) Delete element " << std::endl
                           << "Enter Your Choice: ";
                 std::cin >> choice_1;
 
@@ -78,25 +79,17 @@ void Dictionary_Search::performSearch() {
                         std::cout<<std::endl;
                         bool success = trie.insert(tempword);
                         (success) ? std::cout << "Word inserted successfully" << std::endl : std::cout << "Word already exists" << std::endl;
+                        std::cout<<std::endl;
                         break;
                     }
                     case 3: {
-                        std::string tempword{""};
-                        std::cout << "Enter the Word You Want to Search for: ";
-                        std::cin >> tempword;
-                        std::cout<<std::endl;
-                        bool result = trie.search(tempword);
-                        (result) ?std::cout<<"Word Founded Elhamdullah "<<std::endl : std::cout<<"Word Isn't Founded In The Corpus"<<std::endl;
-                        break;
-                    }
-                    case 4: {
                         std::string tempword{""};
                         std::cout << "Enter the Word You Want to Delete: ";
                         std::cin >> tempword;
                         std::cout<<std::endl;
                         bool success = trie.deleteWord(tempword);
                         (success) ? std::cout << "Word deleted successfully" << std::endl : std::cout << "Word isn't founded aslun in the corpus " << std::endl;
-
+                        std::cout<<std::endl;
                         break;
                     }
                     default:
@@ -106,9 +99,17 @@ void Dictionary_Search::performSearch() {
                 }
                 break;
             }
-
-            //Case 2 => 4
-
+            case 2: {
+                std::string tempword{""};
+                std::cout << "Enter the Word You Want to Search for: ";
+                std::cin >> tempword;
+                std::cout<<std::endl;
+                bool result = trie.search(tempword);
+                (result) ?std::cout<<"Word Founded Elhamdullah "<<std::endl : std::cout<<"Word Isn't Founded In The Corpus"<<std::endl;
+                std::cout<<std::endl;
+                break;
+            }
+            //Case 3 , Case 4
             case 5: {
                 std::cout << "Enter Your Input For The Fuzzy Search: ";
                 std::cin >> searchTerm;
