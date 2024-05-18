@@ -23,8 +23,6 @@ private:
 
     void searchWords(TrieNode* node, const std::string& prefix, Vector &result);
 
-    void wildcardSearchHelper(TrieNode* node, const std::string& pattern, std::string word, Vector& result);
-
     void partialWordSearchHelper(TrieNode* node, const std::string& suffix, const std::string& current, Vector& result, int maxLength);
 
     void misspelledWordSearchHelper(TrieNode* node, const std::string& word, const std::string& current, Vector& result);
@@ -48,8 +46,6 @@ public:
     void displayContent();
 
     Vector fuzzySearch(const std::string& prefix);
-
-    Vector wildcardSearch(const std::string& pattern);
 
     Vector partialWordSearch(const std::string& suffix);
 
