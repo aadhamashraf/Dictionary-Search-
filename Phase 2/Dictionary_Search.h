@@ -1,6 +1,7 @@
 //
 // Created by Ashraf on 16/05/2024.
 //
+
 #ifndef PHASE_2_DICTIONARY_SEARCH_H
 #define PHASE_2_DICTIONARY_SEARCH_H
 
@@ -23,8 +24,6 @@ public:
     Vector misspelledWordSearch(const std::string& searchTerm);
 
     Vector partialWordSearch(const std::string& searchTerm);
-
-    Vector wildcardSearch(const std::string& searchTerm);
 
     void performSearch();
 };
