@@ -2,58 +2,44 @@
 #define TRIE_H
 
 #include <iostream>
-#include "Vector.h" 
+#include "Vector.h"
 
 struct TrieNode {
-    TrieNode *children[26];
+    TrieNode *children[26]{};
     bool isEndOfWord;
 
     TrieNode() : isEndOfWord(false) {
-        for (int i = 0; i < 26; ++i) {
-            children[i] = nullptr;
+        for (auto &i : children) {
+            i = nullptr;
         }
     }
 };
 
 class Trie {
-private:
-    TrieNode *root;
-
-    char tolower(char c); 
-
-    void searchWords(TrieNode* node, const std::string& prefix, Vector &result);
-
-    void partialWordSearchHelper(TrieNode* node, const std::string& suffix, const std::string& current, Vector& result, int maxLength);
-
-    void misspelledWordSearchHelper(TrieNode* node, const std::string& word, const std::string& current, Vector& result);
-
 public:
-
-    int wordcoutner {0};
+    TrieNode *root;
+    int wordcounter{0};
 
     Trie();
-
-    void insert(const std::string &word);
-
+    bool insert(const std::string &word);
     bool search(const std::string &word);
-
-    bool isEmpty(TrieNode *node);
-
-    TrieNode* remove(TrieNode *node, const std::string &word, int depth = 0);
-
-    void deleteWord(const std::string &word);
-
+    bool deleteWord(const std::string &word);
     void displayContent();
+    int get_trie_size() const;
 
     Vector fuzzySearch(const std::string& prefix);
-
     Vector partialWordSearch(const std::string& suffix);
-
     Vector misspelledWordSearch(const std::string& word);
 
-    void displayContentHelper(TrieNode *node, std::string prefix);
-
-    int get_trie_size();
+private:
+    static char tolower(char c);
+    bool isEmpty(TrieNode *node);
+    bool remove(TrieNode* &node, const std::string &word, int depth);
+    void displayContentHelper(TrieNode *node, const std::string& prefix);
+    void gatherAllWords(TrieNode *node, const std::string& currentWord, Vector& allWords);
+    void fuzzySearchRecursive(TrieNode* node, const std::string& currentPrefix, const std::string& targetPrefix, Vector& result);
+    void misspelledWordSearchHelper(TrieNode* node, const std::string& word, const std::string& current, Vector& result);
+    bool isOneEditDistance(const std::string& word1, const std::string& word2);
 };
 
 #endif // TRIE_H
