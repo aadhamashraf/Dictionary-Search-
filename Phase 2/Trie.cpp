@@ -92,36 +92,6 @@ Vector Trie::fuzzySearch(const std::string& prefix) {
     return result;
 }
 
-void Trie::wildcardSearchHelper(TrieNode* node, const std::string& pattern, std::string word, Vector& result) {
-    if (!node) { return; }
-    if (pattern.empty()) {
-        if (node->isEndOfWord) {
-            result.push_back(word);
-        }
-        for (int i = 0; i < 26; ++i) {
-            if (node->children[i]) {
-                wildcardSearchHelper(node->children[i], pattern, word + char('a' + i), result);
-            }
-        }
-    } else {
-        if (pattern[0] == '*') {
-            for (int i = 0; i < 26; ++i) {
-                wildcardSearchHelper(node->children[i], pattern.substr(1), word + char('a' + i), result);
-            }
-            wildcardSearchHelper(node, pattern.substr(1), word, result);
-        } else {
-            int index = pattern[0] - 'a';
-            wildcardSearchHelper(node->children[index], pattern.substr(1), word + pattern[0], result);
-        }
-    }
-}
-
-Vector Trie::wildcardSearch(const std::string& pattern) {
-    Vector result;
-    wildcardSearchHelper(root, pattern, "", result);
-    return result;
-}
-
 void Trie::partialWordSearchHelper(TrieNode* node, const std::string& suffix, const std::string& current, Vector& result, int maxLength) {
     if (!node) {
         return;
